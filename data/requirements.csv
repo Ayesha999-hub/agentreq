@@ -1,0 +1,33 @@
+id,text
+R01,KeePass must be downloaded and installed
+R02,Master Password has no limits in length. A whole sentence can be used with more than 100 characters.
+R03,Folder selected must be of type the database can read and that is “name”.kdb
+R04,Databases must have different names or else the previews one will be replace if selected
+R05,There must be entries in the database in order for them to be printed
+R06,"All data related to the word must be shown. For example if user types “abc” and abc is part of a password and of a username, both entries must be shown"
+R07,A name is required in order for the new group/subgroup to be created
+R08,A subgroup cannot be created when no group is selected
+R09,A name is required in order for the group/subgroup to be renamed
+R10,In order to find something in a group a word must be placed in the find field
+R11,An entry must belong to a group to be created
+R12,When the password field is completed the repeat password field must be completed
+R13,Password field and repeat password field must be identical
+R14,An entry must be selected to be viewed or modified
+R15,When the password field is changed the repeat password field must be Changed and be identical with password field
+R16,An entry must be selected before it is duplicated
+R18,An internet connection and a browser are required in order to download new language translations
+R19,The prefix “Auto-Type:” is required in front of each sequence
+R20,Sequence’s length must not be more than a line (59 characters)
+R21,"If two auto-types are referred in one note field, only the first is used"
+R22,Only one database file is allowed in command line options
+R23,"In case a space is found in the path, it must be enclosed into quotes"
+R24,"If a master password is required to unlock the database, the database doesn’t open unless the password is entered"
+R25,"If a key file is required to unlock the database, the database doesn’t open unless the key file is present"
+R26,"If there is a composite key, both master password and key file are required"
+R27,"In case of lost master password or key file, the database never unlocks again. There is no recovery"
+R28,There is no backdoor or key that unlocks all databases
+R29,File formats are not specialized password database formats
+R30,File formats only specify a low-level layout of stored data
+R31,Global hot key cannot be changed
+R32,"Title, username or URL cannot be changed in a TAN entry."
+R33,"When a TAN is used, it expires automatically and can never be used again."

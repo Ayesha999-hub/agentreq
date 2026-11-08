@@ -1,0 +1,5 @@
+arm,n_requirements,doc_score,pass_rate,smell_total,items_with_smells,conflicts,llm_calls,crit_unambiguous,crit_complete,crit_verifiable,crit_singular,crit_appropriate
+Original,32,3.5562499999999995,0.5,18,18,0,33,3.28125,2.5,3.5625,4.625,3.8125
+Single-prompt baseline,32,4.84375,1.0,23,17,0,65,4.78125,4.65625,4.96875,4.875,4.9375
+AgentReq,32,4.624999999999999,1.0,12,12,0,37,4.65625,3.8125,4.78125,5.0,4.875
+AgentReq w/o smell agent,32,4.606249999999999,1.0,13,13,0,35,4.5625,3.78125,4.875,4.90625,4.90625

@@ -1,0 +1,14 @@
+# secrets and local files: never commit these
+.env
+.llm_cache.jsonl
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# editor / OS
+.vscode/
+.DS_Store
+Thumbs.db

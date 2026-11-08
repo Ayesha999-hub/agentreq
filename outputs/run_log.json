@@ -1,0 +1,811 @@
+{
+  "date": "2026-11-07T17:49:13",
+  "mock_mode": false,
+  "generator_model": "openai/gpt-oss-20b",
+  "judge_model": "openai/gpt-oss-20b",
+  "settings": {
+    "threshold": 4.0,
+    "max_rounds": 4,
+    "min_gain": 0.02,
+    "max_failed_tries": 2
+  },
+  "stop_reason": "all_pass",
+  "conflicts_original": [],
+  "conflicts_agentreq": [],
+  "items": [
+    {
+      "id": "R01",
+      "parent": "R01",
+      "original": "KeePass must be downloaded and installed",
+      "final": "The user shall download and install KeePass version 1.10 from the official website within 5 minutes of initiating the download.",
+      "trace": [
+        [
+          0,
+          "KeePass must be downloaded and installed",
+          3.0
+        ],
+        [
+          1,
+          "The user shall download and install KeePass version 1.10 from the official website within 5 minutes of initiating the download.",
+          4.2
+        ]
+      ],
+      "assumptions": [
+        "Download and installation must complete within 5 minutes of download initiation."
+      ],
+      "final_reasons": {
+        "unambiguous": "The phrase 'within 5 minutes of initiating the download' could be interpreted as the total time for download plus installation or just the download time.",
+        "complete": "It specifies actor, action, target version, source, and time limit, but omits platform or network conditions.",
+        "verifiable": "The requirement can be tested by measuring the elapsed time from download start to installation completion.",
+        "singular": "It describes a single capability: downloading and installing within a time bound.",
+        "appropriate": "It is at a suitable level of abstraction, though the time constraint may be overly prescriptive for all environments."
+      }
+    },
+    {
+      "id": "R02",
+      "parent": "R02",
+      "original": "Master Password has no limits in length. A whole sentence can be used with more than 100 characters.",
+      "final": "Master Password has no limits in length. A whole sentence can be used with more than 100 characters.",
+      "trace": [
+        [
+          0,
+          "Master Password has no limits in length. A whole sentence can be used with more than 100 characters.",
+          5.0
+        ]
+      ],
+      "assumptions": [],
+      "final_reasons": {
+        "unambiguous": "The statement clearly specifies that there is no length limit for the master password.",
+        "complete": "All necessary details to implement and test the requirement are present: the constraint applies to the master password and allows any length.",
+        "verifiable": "It can be verified by attempting to set a master password longer than 100 characters and confirming acceptance.",
+        "singular": "The requirement addresses only one capability: the absence of a length limit.",
+        "appropriate": "It is expressed at the correct level of abstraction without unnecessary implementation details."
+      }
+    },
+    {
+      "id": "R03",
+      "parent": "R03",
+      "original": "Folder selected must be of type the database can read and that is \u201cname\u201d.kdb",
+      "final": "The user shall select a folder that contains a file with the extension \".kdb\" and that is readable by the application.",
+      "trace": [
+        [
+          0,
+          "Folder selected must be of type the database can read and that is \u201cname\u201d.kdb",
+          1.4
+        ],
+        [
+          1,
+          "The user shall select a folder that contains a file with the extension \".kdb\" and that is readable by the application.",
+          5.0
+        ]
+      ],
+      "assumptions": [
+        "The database file extension is \".kdb\"."
+      ],
+      "final_reasons": {
+        "unambiguous": "The requirement clearly states the action and condition without vague terms.",
+        "complete": "All necessary elements (actor, action, condition) are present for implementation and testing.",
+        "verifiable": "The requirement can be tested by attempting to select folders and observing acceptance or rejection.",
+        "singular": "It describes exactly one capability: selecting a folder containing a readable .kdb file.",
+        "appropriate": "The abstraction level is correct, with no unnecessary design details."
+      }
+    },
+    {
+      "id": "R04",
+      "parent": "R04",
+      "original": "Databases must have different names or else the previews one will be replace if selected",
+      "final": "The user shall create a database with a name that is unique among all existing databases; if a database with the same name already exists, the system shall prompt the user to choose a different name before creating the new database.",
+      "trace": [
+        [
+          0,
+          "Databases must have different names or else the previews one will be replace if selected",
+          1.8
+        ],
+        [
+          1,
+          "The user shall create a database with a name that is unique among all existing databases; if a database with the same name already exists, the system shall prompt the user to choose a different name before creating the new database.",
+          5.0
+        ]
+      ],
+      "assumptions": [
+        "Database names are case\u2011sensitive; the uniqueness check is performed at the time of database creation."
+      ],
+      "final_reasons": {
+        "unambiguous": "The requirement is stated clearly with no ambiguous terms.",
+        "complete": "All necessary elements (actor, action, condition, constraint) are present for implementation and testing.",
+        "verifiable": "The outcome (prompt) can be observed and measured in a test.",
+        "singular": "It describes exactly one capability.",
+        "appropriate": "The abstraction level is suitable, with no unnecessary detail."
+      }
+    },
+    {
+      "id": "R05",
+      "parent": "R05",
+      "original": "There must be entries in the database in order for them to be printed",
+      "final": "The system shall allow printing only when the database contains at least one entry.",
+      "trace": [
+        [
+          0,
+          "There must be entries in the database in order for them to be printed",
+          2.6
+        ],
+        [
+          1,
+          "The system shall allow printing only when the database contains at least one entry.",
+          4.6
+        ]
+      ],
+      "assumptions": [
+        "The database is considered to contain entries if the entry count is greater than or equal to 1."
+      ],
+      "final_reasons": {
+        "unambiguous": "The condition and action are clearly stated.",
+        "complete": "Missing explicit actor and context for printing.",
+        "verifiable": "Can be tested by checking print availability with/without entries.",
+        "singular": "Describes a single capability.",
+        "appropriate": "Correct abstraction level, no unnecessary detail."
+      }
+    },
+    {
+      "id": "R06",
+      "parent": "R06",
+      "original": "All data related to the word must be shown. For example if user types \u201cabc\u201d and abc is part of a password and of a username, both entries must be shown",
+      "final": "The user shall see all entries whose password or username contains the typed search string in the search results.",
+      "trace": [
+        [
+          0,
+          "All data related to the word must be shown. For example if user types \u201cabc\u201d and abc is part of a password and of a username, both entries must be shown",
+          2.6
+        ],
+        [
+          1,
+          "The user shall see all entries whose password or username contains the typed search string in the search results.",
+          5.0
+        ]
+      ],
+      "assumptions": [
+        "Search is case\u2011insensitive; the search string is matched as a substring of the password or username."
+      ],
+      "final_reasons": {
+        "unambiguous": "The requirement clearly states the condition and expected outcome.",
+        "complete": "All necessary elements (actor, action, condition, result) are present.",
+        "verifiable": "The outcome can be tested by typing a string and checking the results.",
+        "singular": "It describes a single capability.",
+        "appropriate": "It is at the correct abstraction level without unnecessary detail."
+      }
+    },
+    {
+      "id": "R07",
+      "parent": "R07",
+      "original": "A name is required in order for the new group/subgroup to be created",
+      "final": "A name is required in order for the new group/subgroup to be created",
+      "trace": [
+        [
+          0,
+          "A name is required in order for the new group/subgroup to be created",
+          4.2
+        ]
+      ],
+      "assumptions": [],
+      "final_reasons": {
+        "unambiguous": "Clear that a name is needed, but does not define what constitutes a valid name.",
+        "complete": "Missing actor, action, and context details needed for implementation.",
+        "verifiable": "Can be tested by attempting to create a group without a name.",
+        "singular": "Describes exactly one requirement.",
+        "appropriate": "At the correct level of abstraction for a functional requirement."
+      }
+    },
+    {
+      "id": "R08",
+      "parent": "R08",
+      "original": "A subgroup cannot be created when no group is selected",
+      "final": "A subgroup cannot be created when no group is selected",
+      "trace": [
+        [
+          0,
+          "A subgroup cannot be created when no group is selected",
+          4.6
+        ]
+      ],
+      "assumptions": [],
+      "final_reasons": {
+        "unambiguous": "The statement is clear and leaves no room for multiple interpretations.",
+        "complete": "It specifies the constraint but omits actor and context details that a developer might need.",
+        "verifiable": "The behavior can be tested by attempting to create a subgroup with no group selected.",
+        "singular": "It describes exactly one constraint.",
+        "appropriate": "The level of abstraction is suitable for a requirement."
+      }
+    },
+    {
+      "id": "R09",
+      "parent": "R09",
+      "original": "A name is required in order for the group/subgroup to be renamed",
+      "final": "The user shall rename a group or subgroup only when a non\u2011empty name is provided.",
+      "trace": [
+        [
+          0,
+          "A name is required in order for the group/subgroup to be renamed",
+          3.8
+        ],
+        [
+          1,
+          "The user shall rename a group or subgroup only when a non\u2011empty name is provided.",
+          5.0
+        ]
+      ],
+      "assumptions": [
+        "A name must be a non\u2011empty string; length limits are not specified in the original requirement."
+      ],
+      "final_reasons": {
+        "unambiguous": "The requirement states a single, clear condition for renaming.",
+        "complete": "It specifies actor, action, and condition needed for implementation.",
+        "verifiable": "The condition can be tested by attempting a rename with an empty name.",
+        "singular": "It describes only one capability.",
+        "appropriate": "The abstraction level is suitable for implementation."
+      }
+    },
+    {
+      "id": "R10",
+      "parent": "R10",
+      "original": "In order to find something in a group a word must be placed in the find field",
+      "final": "The user shall enter a single word into the find field to search for entries within the currently selected group.",
+      "trace": [
+        [
+          0,
+          "In order to find something in a group a word must be placed in the find field",
+          3.0
+        ],
+        [
+          1,
+          "The user shall enter a single word into the find field to search for entries within the currently selected group.",
+          4.6
+        ]
+      ],
+      "assumptions": [
+        "Search results are displayed within 2 seconds of entering the word."
+      ],
+      "final_reasons": {
+        "unambiguous": "The phrase 'single word' is clear but could be interpreted slightly differently regarding whitespace.",
+        "complete": "It specifies actor, action, and context but omits explicit mention of expected outcome or error handling.",
+        "verifiable": "The requirement can be tested by entering a word and observing search results.",
+        "singular": "It describes one specific capability.",
+        "appropriate": "The abstraction level is suitable for implementation."
+      }
+    },
+    {
+      "id": "R11",
+      "parent": "R11",
+      "original": "An entry must belong to a group to be created",
+      "final": "An entry must belong to a group to be created",
+      "trace": [
+        [
+          0,
+          "An entry must belong to a group to be created",
+          4.8
+        ]
+      ],
+      "assumptions": [],
+      "final_reasons": {
+        "unambiguous": "The statement is clear and leaves no room for multiple interpretations.",
+        "complete": "It specifies the necessary condition but omits the actor and explicit action verb.",
+        "verifiable": "The requirement can be tested by attempting to create an entry without a group and observing failure.",
+        "singular": "It describes exactly one capability: the group membership prerequisite for entry creation.",
+        "appropriate": "The level of abstraction is suitable for implementation without prescribing design details."
+      }
+    },
+    {
+      "id": "R12",
+      "parent": "R12",
+      "original": "When the password field is completed the repeat password field must be completed",
+      "final": "The user shall automatically populate the repeat password field with the same value as the password field whenever the password field is non-empty.",
+      "trace": [
+        [
+          0,
+          "When the password field is completed the repeat password field must be completed",
+          2.8
+        ],
+        [
+          1,
+          "The user shall fill the repeat password field whenever the password field is non-empty.",
+          3.8
+        ],
+        [
+          2,
+          "The user shall automatically populate the repeat password field with the same value as the password field whenever the password field is non-empty.",
+          4.8
+        ]
+      ],
+      "assumptions": [
+        "Completion of the password field is defined as the field containing at least one character."
+      ],
+      "final_reasons": {
+        "unambiguous": "The wording specifies a single, clear action with no ambiguous terms.",
+        "complete": "It specifies the condition and action but omits the implicit actor (user) and does not state what happens when the password field becomes empty.",
+        "verifiable": "The requirement can be tested by entering a non-empty password and checking the repeat field.",
+        "singular": "It describes exactly one capability.",
+        "appropriate": "The abstraction level is correct; no unnecessary implementation detail is included."
+      }
+    },
+    {
+      "id": "R13",
+      "parent": "R13",
+      "original": "Password field and repeat password field must be identical",
+      "final": "Password field and repeat password field must be identical",
+      "trace": [
+        [
+          0,
+          "Password field and repeat password field must be identical",
+          4.4
+        ]
+      ],
+      "assumptions": [],
+      "final_reasons": {
+        "unambiguous": "The requirement states a clear condition with no ambiguous terms.",
+        "complete": "It specifies the condition but omits actor, context, and any constraints on when it applies.",
+        "verifiable": "Equality can be directly tested in the UI.",
+        "singular": "It describes only one capability: password field equality.",
+        "appropriate": "The level of detail is suitable for a UI requirement, though it could be slightly more abstract."
+      }
+    },
+    {
+      "id": "R14",
+      "parent": "R14",
+      "original": "An entry must be selected to be viewed or modified",
+      "final": "An entry must be selected to be viewed or modified",
+      "trace": [
+        [
+          0,
+          "An entry must be selected to be viewed or modified",
+          4.0
+        ]
+      ],
+      "assumptions": [],
+      "final_reasons": {
+        "unambiguous": "The wording is clear but does not specify what 'selected' means, leaving room for interpretation.",
+        "complete": "It implies the user actor but lacks explicit mention of the context or conditions for selection.",
+        "verifiable": "It can be tested by attempting to view or modify without selection and expecting a failure.",
+        "singular": "It describes a single requirement: selection is required before viewing or modifying.",
+        "appropriate": "The requirement is at the correct level of abstraction for the application."
+      }
+    },
+    {
+      "id": "R15",
+      "parent": "R15",
+      "original": "When the password field is changed the repeat password field must be Changed and be identical with password field",
+      "final": "When the password field is changed the repeat password field must be Changed and be identical with password field",
+      "trace": [
+        [
+          0,
+          "When the password field is changed the repeat password field must be Changed and be identical with password field",
+          4.2
+        ]
+      ],
+      "assumptions": [],
+      "final_reasons": {
+        "unambiguous": "The wording is slightly ambiguous due to the capitalized 'Changed' and could be interpreted as a requirement to change the field rather than update its value.",
+        "complete": "It specifies the trigger, action, and condition, but omits the actor (user) and the exact mechanism of updating the repeat field.",
+        "verifiable": "The requirement can be tested by changing the password field and verifying the repeat field matches.",
+        "singular": "It describes a single, clear behavior.",
+        "appropriate": "It is at the right level of abstraction, though minor wording issues reduce clarity."
+      }
+    },
+    {
+      "id": "R16",
+      "parent": "R16",
+      "original": "An entry must be selected before it is duplicated",
+      "final": "An entry must be selected before it is duplicated",
+      "trace": [
+        [
+          0,
+          "An entry must be selected before it is duplicated",
+          4.6
+        ]
+      ],
+      "assumptions": [],
+      "final_reasons": {
+        "unambiguous": "The requirement states a clear condition for duplication.",
+        "complete": "It lacks explicit actor and action details needed for implementation.",
+        "verifiable": "It can be tested by attempting duplication without selection.",
+        "singular": "It describes a single constraint on duplication.",
+        "appropriate": "The abstraction level is suitable for a functional requirement."
+      }
+    },
+    {
+      "id": "R18",
+      "parent": "R18",
+      "original": "An internet connection and a browser are required in order to download new language translations",
+      "final": "An internet connection and a browser are required in order to download new language translations",
+      "trace": [
+        [
+          0,
+          "An internet connection and a browser are required in order to download new language translations",
+          4.6
+        ]
+      ],
+      "assumptions": [],
+      "final_reasons": {
+        "unambiguous": "The requirement states clearly that both an internet connection and a browser are needed.",
+        "complete": "It lacks an explicit actor and does not specify the context or conditions under which the requirement applies.",
+        "verifiable": "The presence or absence of an internet connection and a browser can be directly tested.",
+        "singular": "It describes only one capability: the need for internet and browser to download translations.",
+        "appropriate": "The level of abstraction is suitable for a functional requirement without unnecessary detail."
+      }
+    },
+    {
+      "id": "R19",
+      "parent": "R19",
+      "original": "The prefix \u201cAuto-Type:\u201d is required in front of each sequence",
+      "final": "The system shall prefix each auto\u2011type sequence with the string \"Auto-Type:\".",
+      "trace": [
+        [
+          0,
+          "The prefix \u201cAuto-Type:\u201d is required in front of each sequence",
+          1.6
+        ],
+        [
+          1,
+          "The system shall prefix each auto\u2011type sequence with the string \"Auto-Type:\".",
+          5.0
+        ]
+      ],
+      "assumptions": [
+        "An auto\u2011type sequence is a string entered by the user that is executed by the auto\u2011type feature."
+      ],
+      "final_reasons": {
+        "unambiguous": "The wording specifies exactly what string must prefix each auto\u2011type sequence.",
+        "complete": "All necessary elements (actor, action, target) are present to implement and test the requirement.",
+        "verifiable": "The requirement can be verified by inspecting the auto\u2011type output for the specified prefix.",
+        "singular": "It describes only one capability: the prefixing of auto\u2011type sequences.",
+        "appropriate": "The requirement is at the correct abstraction level without unnecessary detail."
+      }
+    },
+    {
+      "id": "R20",
+      "parent": "R20",
+      "original": "Sequence\u2019s length must not be more than a line (59 characters)",
+      "final": "The auto\u2011type sequence shall not exceed 59 characters.",
+      "trace": [
+        [
+          0,
+          "Sequence\u2019s length must not be more than a line (59 characters)",
+          3.0
+        ],
+        [
+          1,
+          "The auto\u2011type sequence shall not exceed 59 characters.",
+          4.6
+        ]
+      ],
+      "assumptions": [
+        "The term \"auto\u2011type sequence\" refers to the string of keystrokes entered by the user for auto\u2011typing into a target application."
+      ],
+      "final_reasons": {
+        "unambiguous": "The statement is clear and leaves no room for multiple interpretations.",
+        "complete": "It specifies the limit but omits context such as which auto\u2011type sequences or under what conditions.",
+        "verifiable": "The length can be measured directly to confirm compliance.",
+        "singular": "It addresses only one constraint: the maximum length.",
+        "appropriate": "The level of abstraction is suitable for a requirement without unnecessary detail."
+      }
+    },
+    {
+      "id": "R21",
+      "parent": "R21",
+      "original": "If two auto-types are referred in one note field, only the first is used",
+      "final": "The user shall execute only the first auto\u2011type reference found in an entry\u2019s note field when performing auto\u2011type.",
+      "trace": [
+        [
+          0,
+          "If two auto-types are referred in one note field, only the first is used",
+          3.4
+        ],
+        [
+          1,
+          "The user shall execute only the first auto\u2011type reference found in an entry\u2019s note field when performing auto\u2011type.",
+          5.0
+        ]
+      ],
+      "assumptions": [
+        "An auto\u2011type reference is a placeholder enclosed in braces, e.g., {USERNAME}{PASSWORD}.",
+        "The note field is the text field associated with an entry.",
+        "The first auto\u2011type reference is the leftmost placeholder in the note field."
+      ],
+      "final_reasons": {
+        "unambiguous": "The requirement clearly specifies the action and the condition without vague terms.",
+        "complete": "It includes actor, action, condition, and limitation needed for implementation.",
+        "verifiable": "The behavior can be tested by checking which reference is executed.",
+        "singular": "It describes exactly one capability.",
+        "appropriate": "It is at the correct abstraction level with no unnecessary detail."
+      }
+    },
+    {
+      "id": "R22",
+      "parent": "R22",
+      "original": "Only one database file is allowed in command line options",
+      "final": "Only one database file is allowed in command line options",
+      "trace": [
+        [
+          0,
+          "Only one database file is allowed in command line options",
+          4.6
+        ]
+      ],
+      "assumptions": [],
+      "final_reasons": {
+        "unambiguous": "The statement is clear and allows only one interpretation.",
+        "complete": "It lacks explicit actor and action context, but the core constraint is present.",
+        "verifiable": "It can be tested by attempting to pass multiple database files.",
+        "singular": "It describes a single constraint.",
+        "appropriate": "It is at the correct abstraction level with no unnecessary detail."
+      }
+    },
+    {
+      "id": "R23",
+      "parent": "R23",
+      "original": "In case a space is found in the path, it must be enclosed into quotes",
+      "final": "The system shall enclose any file path containing one or more space characters in double quotation marks when the path is used in a command-line argument.",
+      "trace": [
+        [
+          0,
+          "In case a space is found in the path, it must be enclosed into quotes",
+          3.0
+        ],
+        [
+          1,
+          "The system shall enclose any file path containing one or more space characters in double quotation marks when the path is used in a command-line argument.",
+          5.0
+        ]
+      ],
+      "assumptions": [
+        "The term \"path\" refers to a file system path supplied to the application via the command line."
+      ],
+      "final_reasons": {
+        "unambiguous": "The requirement uses precise language with no vague terms.",
+        "complete": "All necessary elements (condition, action, context) are present for implementation.",
+        "verifiable": "The behavior can be tested by inspecting command-line arguments.",
+        "singular": "It describes exactly one capability.",
+        "appropriate": "The abstraction level is correct for a functional requirement."
+      }
+    },
+    {
+      "id": "R24",
+      "parent": "R24",
+      "original": "If a master password is required to unlock the database, the database doesn\u2019t open unless the password is entered",
+      "final": "If a master password is required to unlock the database, the database doesn\u2019t open unless the password is entered",
+      "trace": [
+        [
+          0,
+          "If a master password is required to unlock the database, the database doesn\u2019t open unless the password is entered",
+          4.6
+        ]
+      ],
+      "assumptions": [],
+      "final_reasons": {
+        "unambiguous": "The statement is clear and leaves no room for multiple interpretations.",
+        "complete": "It specifies the condition and outcome but omits the actor and explicit action steps.",
+        "verifiable": "The behavior can be tested by attempting to open the database without entering a password.",
+        "singular": "It describes a single, specific behavior.",
+        "appropriate": "The requirement is at the correct level of abstraction without unnecessary detail."
+      }
+    },
+    {
+      "id": "R25",
+      "parent": "R25",
+      "original": "If a key file is required to unlock the database, the database doesn\u2019t open unless the key file is present",
+      "final": "If a key file is required to unlock the database, the database doesn\u2019t open unless the key file is present",
+      "trace": [
+        [
+          0,
+          "If a key file is required to unlock the database, the database doesn\u2019t open unless the key file is present",
+          4.8
+        ]
+      ],
+      "assumptions": [],
+      "final_reasons": {
+        "unambiguous": "The statement is clear and leaves no room for multiple interpretations.",
+        "complete": "It specifies the condition and outcome but omits the actor explicitly and lacks details on error handling.",
+        "verifiable": "The behavior can be tested by attempting to open a database without the required key file.",
+        "singular": "It describes exactly one capability: the database will not open if the key file is missing.",
+        "appropriate": "The requirement is at the correct level of abstraction without unnecessary implementation details."
+      }
+    },
+    {
+      "id": "R26",
+      "parent": "R26",
+      "original": "If there is a composite key, both master password and key file are required",
+      "final": "If there is a composite key, both master password and key file are required",
+      "trace": [
+        [
+          0,
+          "If there is a composite key, both master password and key file are required",
+          4.6
+        ]
+      ],
+      "assumptions": [],
+      "final_reasons": {
+        "unambiguous": "The statement clearly specifies that both elements are required when a composite key exists.",
+        "complete": "It lacks explicit mention of the actor (user) and the context in which the requirement applies, but the core intent is present.",
+        "verifiable": "The requirement can be tested by attempting to unlock with only one element and verifying failure.",
+        "singular": "It describes a single, distinct capability.",
+        "appropriate": "The abstraction level is suitable; no unnecessary implementation details are included."
+      }
+    },
+    {
+      "id": "R27",
+      "parent": "R27",
+      "original": "In case of lost master password or key file, the database never unlocks again. There is no recovery",
+      "final": "In case of lost master password or key file, the database never unlocks again. There is no recovery",
+      "trace": [
+        [
+          0,
+          "In case of lost master password or key file, the database never unlocks again. There is no recovery",
+          4.6
+        ]
+      ],
+      "assumptions": [],
+      "final_reasons": {
+        "unambiguous": "The statement is clear and allows only one interpretation.",
+        "complete": "It specifies the condition and outcome but omits an explicit actor.",
+        "verifiable": "The outcome can be tested by attempting to unlock after loss.",
+        "singular": "It describes exactly one capability/constraint.",
+        "appropriate": "It is at the correct level of abstraction with no unnecessary detail."
+      }
+    },
+    {
+      "id": "R28",
+      "parent": "R28",
+      "original": "There is no backdoor or key that unlocks all databases",
+      "final": "There is no backdoor or key that unlocks all databases",
+      "trace": [
+        [
+          0,
+          "There is no backdoor or key that unlocks all databases",
+          4.4
+        ]
+      ],
+      "assumptions": [],
+      "final_reasons": {
+        "unambiguous": "The statement is clear and leaves no room for multiple interpretations.",
+        "complete": "It specifies a security constraint but lacks details on how to verify or enforce it.",
+        "verifiable": "Verification requires code review or security audit, not a simple test.",
+        "singular": "It describes exactly one security property.",
+        "appropriate": "It is at the correct level of abstraction for a security requirement."
+      }
+    },
+    {
+      "id": "R29",
+      "parent": "R29",
+      "original": "File formats are not specialized password database formats",
+      "final": "The application shall store password databases in a standard, non-proprietary file format rather than a specialized password database format.",
+      "trace": [
+        [
+          0,
+          "File formats are not specialized password database formats",
+          1.8
+        ],
+        [
+          1,
+          "The application shall store password databases in a standard, non-proprietary file format rather than a specialized password database format.",
+          4.4
+        ]
+      ],
+      "assumptions": [
+        "The standard file format used is JSON."
+      ],
+      "final_reasons": {
+        "unambiguous": "The requirement is stated clearly with no vague terms.",
+        "complete": "It specifies actor, action, and condition, but lacks a precise definition of 'standard, non\u2011proprietary'.",
+        "verifiable": "Verification depends on an external definition of what counts as standard, making it partially testable.",
+        "singular": "It describes a single capability: storing databases in a standard format.",
+        "appropriate": "The abstraction level is suitable for a requirement without unnecessary detail."
+      }
+    },
+    {
+      "id": "R30",
+      "parent": "R30",
+      "original": "File formats only specify a low-level layout of stored data",
+      "final": "The system shall define the file format to specify the low\u2011level layout of stored data, including field offsets and data types.",
+      "trace": [
+        [
+          0,
+          "File formats only specify a low-level layout of stored data",
+          2.6
+        ],
+        [
+          1,
+          "The system shall define the file format to specify only the low-level layout of stored data.",
+          3.4
+        ],
+        [
+          2,
+          "The system shall define the file format to specify the low\u2011level layout of stored data, including field offsets and data types.",
+          4.0
+        ]
+      ],
+      "assumptions": [],
+      "final_reasons": {
+        "unambiguous": "Clear but could be interpreted as documentation or implementation.",
+        "complete": "Missing explicit constraints or versioning details.",
+        "verifiable": "Can be verified by checking documentation or code.",
+        "singular": "Describes one capability only.",
+        "appropriate": "Acceptable abstraction level for a system requirement."
+      }
+    },
+    {
+      "id": "R31",
+      "parent": "R31",
+      "original": "Global hot key cannot be changed",
+      "final": "The user shall not be able to change the global hot key.",
+      "trace": [
+        [
+          0,
+          "Global hot key cannot be changed",
+          3.4
+        ],
+        [
+          1,
+          "The user shall not be able to change the global hot key.",
+          4.8
+        ]
+      ],
+      "assumptions": [
+        "The default global hot key is Ctrl+Alt+H."
+      ],
+      "final_reasons": {
+        "unambiguous": "The statement is clear and leaves no room for multiple interpretations.",
+        "complete": "It specifies the actor (user) and the action (cannot change), but does not detail the context or scope of the global hot key.",
+        "verifiable": "The requirement can be tested by attempting to modify the hot key and confirming it is not allowed.",
+        "singular": "It describes exactly one capability/constraint.",
+        "appropriate": "The level of abstraction is suitable for a requirement without unnecessary detail."
+      }
+    },
+    {
+      "id": "R32",
+      "parent": "R32",
+      "original": "Title, username or URL cannot be changed in a TAN entry.",
+      "final": "The user shall not modify the title, username, or URL fields of a TAN entry.",
+      "trace": [
+        [
+          0,
+          "Title, username or URL cannot be changed in a TAN entry.",
+          1.4
+        ],
+        [
+          1,
+          "The user shall not modify the title, username, or URL fields of a TAN entry.",
+          4.4
+        ]
+      ],
+      "assumptions": [
+        "A TAN entry is a database entry whose type is designated as TAN."
+      ],
+      "final_reasons": {
+        "unambiguous": "The term 'TAN entry' may not be defined within this statement, causing potential ambiguity.",
+        "complete": "It specifies actor, action, condition, and limits, but lacks a definition of 'TAN entry'.",
+        "verifiable": "The restriction can be tested by attempting to edit the specified fields.",
+        "singular": "It describes a single, clear constraint.",
+        "appropriate": "The requirement is at the correct level of abstraction without unnecessary detail."
+      }
+    },
+    {
+      "id": "R33",
+      "parent": "R33",
+      "original": "When a TAN is used, it expires automatically and can never be used again.",
+      "final": "When a TAN is used, it expires automatically and can never be used again.",
+      "trace": [
+        [
+          0,
+          "When a TAN is used, it expires automatically and can never be used again.",
+          4.6
+        ]
+      ],
+      "assumptions": [],
+      "final_reasons": {
+        "unambiguous": "The statement clearly defines the behavior of a TAN when used.",
+        "complete": "It lacks explicit actor and context details needed for implementation.",
+        "verifiable": "The behavior can be tested by attempting reuse after use.",
+        "singular": "It describes only one capability: TAN expiration.",
+        "appropriate": "The abstraction level is suitable for a requirement."
+      }
+    }
+  ]
+}

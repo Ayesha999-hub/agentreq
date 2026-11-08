@@ -1,0 +1,147 @@
+id,original,baseline_rewrite,agentreq_rewrite,orig_score,baseline_score,agentreq_score,orig_smells,baseline_smells,agentreq_smells,rounds_changed,assumptions_to_confirm
+R01,KeePass must be downloaded and installed,"**Requirement:**  
+The system shall download KeePass Password Safe version 1.10 from the official project website (https://keepass.info) and install it on the target machine using the standard installer executable. The installation must be performed silently (no user interaction) and verified by checking that the KeePass executable (`KeePass.exe`) exists in the default installation directory (`C:\Program Files\KeePass Password Safe 1.10\`) and that the application can be launched successfully.",The user shall download and install KeePass version 1.10 from the official website within 5 minutes of initiating the download.,3.0,5.0,4.2,0,0,0,1,Download and installation must complete within 5 minutes of download initiation.
+R02,Master Password has no limits in length. A whole sentence can be used with more than 100 characters.,"**Requirement**  
+The KeePass Password Safe application shall allow users to set a master password of any length. The system must accept and store master passwords containing more than 100 characters, including full sentences, without imposing a predefined maximum length. The application shall validate and process such passwords correctly, ensuring that encryption, authentication, and all related security functions operate reliably regardless of password length.",Master Password has no limits in length. A whole sentence can be used with more than 100 characters.,5.0,5.0,5.0,1,1,1,0,
+R03,Folder selected must be of type the database can read and that is “name”.kdb,The application must allow the user to select a folder only if the folder contains a file named exactly “name.kdb” (where “name” is the user‑supplied database name). The selected folder must be a valid directory that the database can read; otherwise the selection must be rejected and an appropriate error message displayed.,"The user shall select a folder that contains a file with the extension "".kdb"" and that is readable by the application.",1.4,5.0,5.0,0,1,0,1,"The database file extension is "".kdb""."
+R04,Databases must have different names or else the previews one will be replace if selected,"All KeePass databases opened within a single session must have unique names; if a user attempts to open a database whose name matches an already open database, the application must prompt the user to choose a different name or to close the existing instance before opening the new one, thereby preventing accidental replacement of the preview.","The user shall create a database with a name that is unique among all existing databases; if a database with the same name already exists, the system shall prompt the user to choose a different name before creating the new database.",1.8,4.4,5.0,0,0,1,1,Database names are case‑sensitive; the uniqueness check is performed at the time of database creation.
+R05,There must be entries in the database in order for them to be printed,"The application shall not generate a printout unless the current database contains at least one entry. If the database is empty, the print command must be disabled and an informative message displayed to the user.",The system shall allow printing only when the database contains at least one entry.,2.6,5.0,4.6,0,0,0,1,The database is considered to contain entries if the entry count is greater than or equal to 1.
+R06,"All data related to the word must be shown. For example if user types “abc” and abc is part of a password and of a username, both entries must be shown","**Requirement: Full‑Text Search Across All Entry Fields**
+
+**Purpose**  
+Enable users to retrieve every database entry that contains a specified search string in any of its data fields (password, username, URL, notes, or any custom field).
+
+**Scope**  
+- Applies to the desktop client of KeePass Password Safe version 1.10.  
+- Search is performed on the currently opened database only.  
+- The search operation is case‑insensitive by default but may be toggled to case‑sensitive via a user‑configurable option.
+
+**Functional Specification**  
+1. **Input**  
+   - User enters a search query string `Q` into the search box.  
+   - The query may contain any printable characters, including spaces and special symbols.
+
+2. **Processing**  
+   - For each entry `E` in the database, evaluate all of the following fields:  
+     - Password  
+     - Username  
+     - URL  
+     - Notes  
+     - All custom fields defined by the user.  
+   - If `Q` is a substring of any of these fields (according to the current case‑sensitivity setting), mark `E` as a match.
+
+3. **Output**  
+   - Display a list of all matching entries in the main view, preserving the original group hierarchy.  
+   - Highlight the matching substring within each field in the entry preview pane.  
+   - If no entries match, show a clear “No results found” message.
+
+4. **Performance**  
+   - Search must complete within 2 seconds for databases up to 10,000 entries on a typical consumer laptop (Intel i5, 8 GB RAM).  
+   - The search operation should not block the UI thread; results should appear incrementally if the dataset is large.
+
+5. **User Controls**  
+   - A toggle to switch between case‑insensitive and case‑sensitive search.  
+   - An option to include or exclude custom fields from the search.  
+   - A “Clear” button to reset the search query and restore the full entry list.
+
+**Acceptance Criteria**  
+- When the user types “abc” and an entry contains “abc” in its password and another entry contains “abc” in its username, both entries appear in the search results.  
+- The search results update in real time as the user types.  
+- The UI remains responsive during the search.  
+- The case‑sensitivity toggle correctly alters the matching behavior.  
+- The “Clear” button restores the original, unfiltered entry list.",The user shall see all entries whose password or username contains the typed search string in the search results.,2.6,4.8,5.0,0,2,0,1,Search is case‑insensitive; the search string is matched as a substring of the password or username.
+R07,A name is required in order for the new group/subgroup to be created,"**Requirement**  
+When a user initiates the creation of a new group or subgroup, the application must prompt the user to enter a name. The name field is mandatory; the ""Create"" action is disabled until the user provides a non‑empty string that does not consist solely of whitespace. If the user attempts to create a group without entering a valid name, the application must display an error message indicating that the group name is required.",A name is required in order for the new group/subgroup to be created,4.2,5.0,4.2,1,0,1,0,
+R08,A subgroup cannot be created when no group is selected,"**Requirement**  
+A user must not be able to create a subgroup unless a parent group is currently selected. If no group is selected, the application shall disable the “Create Subgroup” action and display an informative message indicating that a parent group must be chosen first.",A subgroup cannot be created when no group is selected,4.6,5.0,4.6,1,1,1,0,
+R09,A name is required in order for the group/subgroup to be renamed,"**Requirement**  
+The application shall require the user to provide a non‑empty, unique name when renaming a group or subgroup. The rename operation must be rejected if the entered name is empty, consists solely of whitespace, or duplicates an existing sibling group name. Upon rejection, the system shall display a clear error message indicating the reason for failure. The rename operation shall only proceed when the name satisfies these validation rules.",The user shall rename a group or subgroup only when a non‑empty name is provided.,3.8,5.0,5.0,1,1,0,1,A name must be a non‑empty string; length limits are not specified in the original requirement.
+R10,In order to find something in a group a word must be placed in the find field,"The search function must allow a user to locate any entry within a selected group by entering a keyword or phrase into the search field. The system shall display all entries whose title, username, URL, or notes contain the entered keyword, regardless of case, and shall filter results to the currently selected group and its subgroups. If no keyword is entered, the search field shall be cleared and no results displayed.",The user shall enter a single word into the find field to search for entries within the currently selected group.,3.0,4.8,4.6,0,1,0,1,Search results are displayed within 2 seconds of entering the word.
+R11,An entry must belong to a group to be created,"**Requirement**  
+An entry can only be created if it is assigned to an existing group; the system must prevent creation of an entry without a group association.",An entry must belong to a group to be created,4.8,4.6,4.8,0,0,0,0,
+R12,When the password field is completed the repeat password field must be completed,"**Requirement**  
+When a user enters a value in the “Password” field of the database creation or password change dialog, the “Repeat Password” field must be automatically enabled and the user must be required to enter a value in it before the dialog can be submitted. The system shall validate that the value entered in the “Repeat Password” field matches the value in the “Password” field; if they do not match, the dialog shall display an error message and prevent submission.",The user shall automatically populate the repeat password field with the same value as the password field whenever the password field is non-empty.,2.8,5.0,4.8,0,1,0,2,Completion of the password field is defined as the field containing at least one character.
+R13,Password field and repeat password field must be identical,"**Requirement**  
+The application shall enforce that the values entered in the *Password* and *Repeat Password* fields are identical before allowing the user to proceed with creating or changing a master password.  
+
+**Acceptance Criteria**  
+1. When the user enters a value in the *Password* field, the *Repeat Password* field must be compared in real‑time.  
+2. If the two values differ, the application shall display a clear, user‑friendly error message (e.g., “Passwords do not match”) and disable the “OK”/“Save” button until the values match.  
+3. If the two values match, the error message shall disappear and the “OK”/“Save” button shall become enabled.  
+4. The comparison shall be case‑sensitive and must include all characters, including whitespace.  
+5. The requirement applies to all contexts where a master password is created or changed (initial setup, password change dialog, key‑file removal, etc.).",Password field and repeat password field must be identical,4.4,5.0,4.4,0,2,0,0,
+R14,An entry must be selected to be viewed or modified,"The user must first select an entry from the database before any view or modification actions can be performed. The system shall prevent the “View” and “Modify” commands from executing unless an entry is selected, and shall display an error message if the user attempts to invoke these commands without a selection.",An entry must be selected to be viewed or modified,4.0,5.0,4.0,0,1,0,0,
+R15,When the password field is changed the repeat password field must be Changed and be identical with password field,"**Requirement**  
+When a user modifies the value in the *Password* field, the *Repeat Password* field must automatically update to match the new value and remain identical to the *Password* field until the user changes the *Password* field again. The system must enforce that the two fields are always equal before allowing the database to be saved.",When the password field is changed the repeat password field must be Changed and be identical with password field,4.2,5.0,4.2,0,0,0,0,
+R16,An entry must be selected before it is duplicated,"**Requirement:**  
+When the user initiates the “Duplicate Entry” action, the application must first verify that an entry is currently selected in the database view. If no entry is selected, the duplicate operation must be disabled and an informative message (“Please select an entry to duplicate.”) must be displayed. Only when an entry is selected should the duplicate operation proceed.",An entry must be selected before it is duplicated,4.6,5.0,4.6,0,0,0,0,
+R18,An internet connection and a browser are required in order to download new language translations,"The application must provide an optional “Update Translations” feature that, when activated, requires the user to have an active internet connection and a modern web browser (Chrome, Firefox, Edge, or Safari, version 80 or newer). The feature will download the latest language translation files from the official KeePass translation repository and apply them to the user interface. If no internet connection is available or the browser does not meet the minimum version requirement, the feature must display a clear error message and allow the user to retry once connectivity or browser compatibility is restored.",An internet connection and a browser are required in order to download new language translations,4.6,4.0,4.6,1,2,1,0,
+R19,The prefix “Auto-Type:” is required in front of each sequence,"**Requirement**  
+When a user defines an auto‑type sequence in KeePass, the sequence must begin with the literal prefix `Auto-Type:`. The prefix is case‑sensitive, must be the first token in the sequence, and must be followed by a space before the rest of the sequence. If the prefix is omitted or misspelled, the sequence must be rejected and an error message displayed.","The system shall prefix each auto‑type sequence with the string ""Auto-Type:"".",1.6,5.0,5.0,1,0,0,1,An auto‑type sequence is a string entered by the user that is executed by the auto‑type feature.
+R20,Sequence’s length must not be more than a line (59 characters),The maximum length of any sequence of characters entered into the application must not exceed 59 characters per line.,The auto‑type sequence shall not exceed 59 characters.,3.0,4.4,4.6,0,0,0,1,"The term ""auto‑type sequence"" refers to the string of keystrokes entered by the user for auto‑typing into a target application."
+R21,"If two auto-types are referred in one note field, only the first is used","**Requirement**  
+When a note field contains more than one auto‑type command, the application shall execute only the first auto‑type command found and ignore any subsequent auto‑type commands in that note field.",The user shall execute only the first auto‑type reference found in an entry’s note field when performing auto‑type.,3.4,4.8,5.0,1,0,0,1,"An auto‑type reference is a placeholder enclosed in braces, e.g., {USERNAME}{PASSWORD}. | The note field is the text field associated with an entry. | The first auto‑type reference is the leftmost placeholder in the note field."
+R22,Only one database file is allowed in command line options,"**Requirement**  
+The application shall accept at most one database file path as a command‑line argument. If the user supplies more than one database file path, the application must display an error message and terminate without opening any database. This constraint applies to all supported operating systems and to all command‑line invocation modes (interactive, batch, and auto‑type).",Only one database file is allowed in command line options,4.6,5.0,4.6,1,0,1,0,
+R23,"In case a space is found in the path, it must be enclosed into quotes","**Requirement**  
+When a file path containing one or more space characters is supplied to the application (e.g., via the command line, configuration file, or user interface), the path must be automatically wrapped in double quotation marks (`""`). This quoting must occur before the path is passed to any underlying system calls or external utilities, ensuring that the entire path is interpreted as a single argument. The implementation must handle paths with multiple spaces, leading/trailing spaces, and Unicode characters, and must not alter paths that already contain proper quoting.",The system shall enclose any file path containing one or more space characters in double quotation marks when the path is used in a command-line argument.,3.0,5.0,5.0,0,0,0,1,"The term ""path"" refers to a file system path supplied to the application via the command line."
+R24,"If a master password is required to unlock the database, the database doesn’t open unless the password is entered","The application must not allow a database to be opened unless the correct master password has been entered. If the database is protected by a master password, the user must provide that password before the database is loaded; otherwise the database remains closed and no data is displayed.","If a master password is required to unlock the database, the database doesn’t open unless the password is entered",4.6,5.0,4.6,1,0,1,0,
+R25,"If a key file is required to unlock the database, the database doesn’t open unless the key file is present",The application must refuse to open a KeePass database if the database file specifies a key file and the key file is not present in the file system at the path recorded in the database header. In this case the application must display an error message indicating that the key file is missing and must not load or display any database contents.,"If a key file is required to unlock the database, the database doesn’t open unless the key file is present",4.8,5.0,4.8,1,1,1,0,
+R26,"If there is a composite key, both master password and key file are required","The application shall enforce that a database protected by a composite key can only be opened when both the master password and the key file are provided. If either credential is missing or incorrect, the database must not be opened and an appropriate error message shall be displayed.","If there is a composite key, both master password and key file are required",4.6,5.0,4.6,1,2,1,0,
+R27,"In case of lost master password or key file, the database never unlocks again. There is no recovery","**Requirement**  
+If a user loses both the master password and the key file for a KeePass database, the application must permanently prevent any attempt to unlock that database. The system shall not provide any recovery mechanism, password reset, or key file regeneration for such a database. All unlock attempts after the loss of both credentials must result in an error message stating that the database cannot be accessed and that no recovery is possible.","In case of lost master password or key file, the database never unlocks again. There is no recovery",4.6,5.0,4.6,1,0,1,0,
+R28,There is no backdoor or key that unlocks all databases,"The application shall not contain any backdoor, hidden key, or privileged access mechanism that allows any user—including the developer, distributor, or any third party—to decrypt or otherwise unlock any KeePass database without the user’s master password and, if applicable, the user‑supplied key file. This guarantee must be verifiable through independent security audits and source‑code reviews.",There is no backdoor or key that unlocks all databases,4.4,5.0,4.4,1,0,1,0,
+R29,File formats are not specialized password database formats,"The application shall support only generic, non‑specialized file formats for storing password data; it shall not use any proprietary or custom password‑database file extensions.","The application shall store password databases in a standard, non-proprietary file format rather than a specialized password database format.",1.8,4.6,4.4,1,1,0,1,The standard file format used is JSON.
+R30,File formats only specify a low-level layout of stored data,"**Requirement – File Format Specification**
+
+The KeePass 1.10 application shall support a single, well‑defined binary file format for storing encrypted databases. The format must:
+
+1. **Versioning**  
+   * Include a 4‑byte unsigned integer `FileVersion` at the beginning of the file.  
+   * Current version is `1`.  
+   * The application must reject files with an unsupported `FileVersion` and display a clear error message.
+
+2. **Header**  
+   * `HeaderSize` (4 bytes) – total size of the header in bytes.  
+   * `HeaderChecksum` (4 bytes) – CRC32 of the header (excluding the checksum field itself).  
+   * `EncryptionAlgorithm` (1 byte) – identifier for the algorithm used (e.g., `0x01` for AES‑256).  
+   * `CompressionFlag` (1 byte) – `0x00` for no compression, `0x01` for zlib compression.  
+   * `MasterKeyHash` (32 bytes) – SHA‑256 hash of the master key (used for integrity verification).  
+   * `Reserved` (variable) – padding to align to 8‑byte boundary.
+
+3. **Data Section**  
+   * `DataSize` (8 bytes) – size of the encrypted data section in bytes.  
+   * `DataChecksum` (4 bytes) – CRC32 of the encrypted data section.  
+   * `EncryptedData` (variable) – the actual encrypted payload, which contains the serialized database structure (groups, entries, etc.).
+
+4. **Footer**  
+   * `FooterSize` (4 bytes) – size of the footer in bytes.  
+   * `FooterChecksum` (4 bytes) – CRC32 of the footer.  
+   * `FileSignature` (8 bytes) – constant value `0x4B657970617373` (“KeePass” in ASCII).  
+   * `Reserved` (variable) – padding to align to 8‑byte boundary.
+
+5. **Integrity and Security**  
+   * The `MasterKeyHash` must be verified before decryption.  
+   * The `DataChecksum` must be verified after decryption.  
+   * The file must be resistant to partial corruption: if the header or footer checksums fail, the application must report the specific section that is corrupted.
+
+6. **Backward Compatibility**  
+   * Files with `FileVersion` `0` (the original KeePass 1.0 format) shall be accepted but only if the user explicitly chooses “Open legacy file”.  
+   * The application must provide a migration tool that converts legacy files to the new format, preserving all data and metadata.
+
+7. **Extensibility**  
+   * The format must allow insertion of optional “Extension Blocks” after the header and before the data section.  
+   * Each block starts with a 4‑byte `BlockType` and a 4‑byte `BlockSize`.  
+   * Unknown block types must be skipped without affecting the rest of the file.
+
+8. **Documentation**  
+   * A formal specification document (PDF) describing the binary layout, field meanings, and checksum algorithms must be maintained in the project repository.  
+   * The specification must be versioned and include a change log for each format update.
+
+By adhering to this specification, KeePass 1.10 will ensure consistent, secure, and extensible storage of user databases.","The system shall define the file format to specify the low‑level layout of stored data, including field offsets and data types.",2.6,4.0,4.0,1,3,0,2,
+R31,Global hot key cannot be changed,"**Requirement**  
+The application shall provide a global hot‑key that triggers the “Show/Hide Password” dialog. This hot‑key must be immutable: users cannot modify, disable, or reassign it through the user interface, configuration files, or any other mechanism. The hot‑key shall be set to Ctrl + Alt + P by default and must remain active for the entire lifetime of the application, regardless of user actions or system changes.",The user shall not be able to change the global hot key.,3.4,5.0,4.8,1,1,0,1,The default global hot key is Ctrl+Alt+H.
+R32,"Title, username or URL cannot be changed in a TAN entry.","**Requirement**  
+A user must not be able to modify the *Title*, *Username*, or *URL* fields of an entry that has been marked as a TAN (Transaction Authentication Number) entry. The application shall enforce this restriction by disabling editing of these fields in the entry editor and by preventing any programmatic or command‑line updates to them. If a user attempts to change one of these fields, the application shall display an error message indicating that the field is read‑only for TAN entries.","The user shall not modify the title, username, or URL fields of a TAN entry.",1.4,5.0,4.4,1,1,0,1,A TAN entry is a database entry whose type is designated as TAN.
+R33,"When a TAN is used, it expires automatically and can never be used again.","**Requirement**  
+When a Transaction Authentication Number (TAN) is generated and subsequently used, the system must automatically invalidate that TAN immediately after its first successful use and must prevent any future use of the same TAN. The invalidation process must occur within 1 second of the successful authentication event, and the system must log the invalidation event with a timestamp, user identifier, and the TAN value (hashed for privacy). The TAN must also be considered expired if it is not used within 30 minutes of its generation, in which case it must be automatically invalidated and logged as expired. The system must enforce these rules for all TANs regardless of the authentication channel (desktop, mobile, or command‑line).","When a TAN is used, it expires automatically and can never be used again.",4.6,4.6,4.6,1,1,1,0,

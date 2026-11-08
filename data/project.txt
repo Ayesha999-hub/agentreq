@@ -1,0 +1,1 @@
+KeePass Password Safe (release 1.10) is a small open-source desktop application that keeps a user's passwords, usernames, URLs and notes in an encrypted database protected by a master password and optionally a key file. Users create, open and save databases, organise entries into groups and subgroups, search them, and use auto-type and command-line options.
